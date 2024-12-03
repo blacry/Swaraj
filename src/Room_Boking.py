@@ -1,9 +1,5 @@
-print('Welcom to SWARAJ')
-print('1. Book a Room')
-print('2. See Staff Details')
-
-to_do_choice = int(input('Enter your choice:'))
-if to_do_choice == 1:
+import correction
+def room_booking():
     print('What kind of room do you want to book?')
     print('1.Single Room')
     print('2.Double Room')
@@ -15,6 +11,23 @@ if to_do_choice == 1:
 
     coustomer_email,coustomer_phone,coustomer_check_in,coustomer_check_out = coustomerDetails()
 
+def staff_details():
+    print('coming soon')
+
+def booking():    
+    print('======================Welcom to SWARAJ======================')
+    print('1. Book a Room')
+    print('2. See Staff Details')
+
+    to_do_choice = int(input('Enter your choice:'))
+
+    if to_do_choice == 1:
+        room_booking()
+    elif to_do_choice == 2:
+        staff_details()
+    else:
+        correction.correct(booking)
+        
 def coustomerDetails():
     print('Enter your details:')
     print('Enter the email address:')
@@ -30,34 +43,37 @@ def coustomerDetails():
 def priceDetails(choice):
     if choice==1:
         a = input('Your room will be of ₹ 1000 , Press 1 to confirm ')
-        if a == 1:
+        if int(a) == 1:
             return 1000
         else:
             priceDetails(choice)
 
     if choice==2:
         a = input('Your room will be of ₹ 2000 , Press 1 to confirm ')
-        if a == 1:
+        if int(a) == 1:
             return 2000
         else:
             priceDetails(choice)
 
     if choice==3:
         a = input('Your room will be of ₹ 4000 , Press 1 to confirm ')  
-        if a == 1:
+        if int(a) == 1:
             return 4000
         else:
             priceDetails(choice)
 
     if choice==4:
         a = input('Your room will be of ₹ 6000 , Press 1 to confirm ')
-        if a == 1:
+        if int(a) == 1:
             return 6000
         else:
             priceDetails(choice)
+    else:
+        correction.correct(room_booking)
 
 
-'''def bookRoom(room_no,name,email,phone,address,room_type,price,check_in,check_out,bill):
+'''
+    def bookRoom(room_no,name,email,phone,address,room_type,price,check_in,check_out,bill):
     con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='',auth_plugin="mysql_native_password")
     cursor=con.cursor()
     cursor.execute("INSERT INTO room_booking(room_no,name,email,phone,address,room_type,price,check_in,check_out,bill) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(room_no,name,email,phone,address,room_type,price,check_in,check_out,bill))
@@ -65,91 +81,6 @@ def priceDetails(choice):
     cursor.close()
     con.close()
 '''
-
-choice=int(input('Enter your choice:'))
-if choice==1:
-    print('Enter your details:')
-    print('Enter the email address:')
-    email=input()
-    print('Enter the phone number:')
-    phone=input()
-    print('Enter the check in date:')
-    check_in=input()
-    print('Enter the check out date:')
-    check_out=input()
-elif choice==2:    
-    print('Enter the room number:')
-    room_no=int(input())
-    print('Enter the guest name:')
-    name=input()    
-    print('Enter the guest email:')
-    email=input()
-    print('Enter the guest phone number:')
-    phone=input()
-    print('Enter the guest address:')
-    address=input()
-    print('Enter the room type:')
-    room_type=input()
-    print('Enter the price:')
-    price=int(input())
-    print('Enter the check in date:')
-    check_in=input()
-    print('Enter the check out date:')
-    check_out=input()
-    print('Enter the bill amount:')
-    bill=int(input())
-    book_room(room_no,name,email,phone,address,room_type,price,check_in,check_out,bill)
-elif choice==3:
-    print('Enter the room number:')
-    room_no=int(input())
-    print('Enter the feedback:')
-    feedback=input()
-    if feedback=='':
-        print('Enter the feedback:')
-        feedback=input()
-    else:
-        print('Thank you for providing feedback')
-    provide_feedback(room_no,feedback)    
-elif choice==4:
-    print('Enter the room number:')
-    room_no=int(input())
-    print('Enter the feedback:')
-    feedback=input()
-    if feedback=='':
-        print('Enter the feedback:')
-        feedback=input()
-    else:
-        print('Thank you for providing feedback')
-    provide_feedback(room_no,feedback)
-elif choice==5:
-    print('Enter the room number:')
-    room_no=int(input())
-    print('Enter the feedback:')
-    feedback=input()
-    if feedback=='':
-        print('Enter the feedback:')
-        feedback=input()
-    else:
-        print('Thank you for providing feedback')
-    provide_feedback(room_no,feedback)
-elif choice==6:
-    print('Thank you for choosing Swaraj Hotel')
-    exit()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 '''
 print('2.Check Room Availability')
