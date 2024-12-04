@@ -1,5 +1,5 @@
 fxns our programme will do
--- booking room
+booking room
 name,age,gender,email,phone,address,price,checkin,checkout,bill,booked
 ---- room info
 types of room,price,available rooms,booked rooms,rating
@@ -13,11 +13,20 @@ refund policy,cancellation policy,terms and conditions,privacy policy,help cente
 
 
 
+kunal karega
+
+--room perks
 
 
+-- aage kya karna hai
+1. 
+2. 
+3. customer data insert in sql
 
 
-
+-- not nessacery
+1. contact us
+1. sql connection
 
 
 #

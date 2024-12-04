@@ -1,5 +1,5 @@
 def provide_feedback():
-    print('please provide us your valualbe feedback')
+    print('please provide us your valuable feedback')
     email=input("Enter your Email_id:")
     #email lo sql se verify karna hai
     query = 'select email from coustomer where email = {}'.format(email)
@@ -13,7 +13,8 @@ def ratingfxn(ratings):
     if ratings in range(1,6):
         print("Thank you for rating Swaraj Hotel!")
     else:
-        print("""\n              Please enter a valid rating\n""")
+        print("""
+              Please enter a valid rating\n""")
         ratings=int(input("please give your rating:"))
         ratingfxn(ratings)
 

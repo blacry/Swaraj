@@ -1,78 +1,124 @@
-import correction
+import misc
+import room_perks
+import Bill
+ 
 def room_booking():
     print('What kind of room do you want to book?')
     print('1.Single Room')
     print('2.Double Room')
     print('3.Twin Room')
     print('4.Family Room')
-
-    room_choice=int(input('Enter your choice:'))
-    price = priceDetails(room_choice)
-
-    coustomer_email,coustomer_phone,coustomer_check_in,coustomer_check_out = coustomerDetails()
-
-def staff_details():
-    print('coming soon')
-
-def booking():    
-    print('======================Welcom to SWARAJ======================')
-    print('1. Book a Room')
-    print('2. See Staff Details')
-
-    to_do_choice = int(input('Enter your choice:'))
-
-    if to_do_choice == 1:
-        room_booking()
-    elif to_do_choice == 2:
-        staff_details()
+    print('5.Luxuary Room')
+    print('if you want to know the perks of all the rooms, PRESS ENTER <==')
+    
+    room_choice=input('Enter your choice:')
+    if room_choice:
+        price = priceDetails(int(room_choice))
     else:
-        correction.correct(booking)
-        
-def coustomerDetails():
-    print('Enter your details:')
-    print('Enter the email address:')
-    email=input()
-    print('Enter the phone number:')
-    phone=input()
-    print('Enter the check in date:')
-    check_in=input()
-    print('Enter the check out date:')
-    check_out=input()
-    return email,phone,check_in,check_out
+        room_perks.perks()
+        room_booking()
+    customer_name, customer_email, customer_phone, customer_check_in, customer_check_out = customerDetails()
+    
+    Bill.bill(customer_name,customer_email,customer_phone,customer_check_in,customer_check_out,price)
 
 def priceDetails(choice):
     if choice==1:
-        a = input('Your room will be of ₹ 1000 , Press 1 to confirm ')
+        a = input('Your room will be of ₹ 1000 , Press 1 to confirm & Press 2 to cancel')
         if int(a) == 1:
             return 1000
+        
+        elif int(a) == 2:
+            print('Request cancelled')
+            room_booking()
         else:
             priceDetails(choice)
 
     if choice==2:
-        a = input('Your room will be of ₹ 2000 , Press 1 to confirm ')
+        a = input('Your room will be of ₹ 2000 , Press 1 to confirm & Press 2 to cancel ')
         if int(a) == 1:
             return 2000
+        elif int(a) == 2:
+            print('Request cancelled')
+            room_booking()
         else:
             priceDetails(choice)
 
     if choice==3:
-        a = input('Your room will be of ₹ 4000 , Press 1 to confirm ')  
+        a = input('Your room will be of ₹ 4000 , Press 1 to confirm & Press 2 to cancel ')  
         if int(a) == 1:
             return 4000
+        elif int(a) == 2:
+            print('Request cancelled')
+            room_booking()
         else:
             priceDetails(choice)
 
     if choice==4:
-        a = input('Your room will be of ₹ 6000 , Press 1 to confirm ')
+        a = input('Your room will be of ₹ 6000 , Press 1 to confirm & Press 2 to cancel ')
         if int(a) == 1:
             return 6000
+        elif int(a) == 2:
+            print('Request cancelled')
+            room_booking()
+        else:
+            priceDetails(choice)
+    if choice==5:
+        a = input('Your room will be of ₹ 10000 , Press 1 to confirm & Press 2 to cancel ')
+        if int(a) == 1:
+            return 10000
+        elif int(a) == 2:
+            print('Request cancelled')
+            room_booking()
         else:
             priceDetails(choice)
     else:
-        correction.correct(room_booking)
+        misc.correct(room_booking)
+
+def customerDetails():
+    while True:
+        print('Enter your details')
+
+        # Name
+        name = input('Enter your name: ').strip()
+        if not name:
+            print("Name cannot be empty. Please try again.")
+            continue
+
+        # Email
+        email = input('Enter your email address: ').strip()
+        if not ("@gmail.com" in email):
+            print("Please enter a valid Gmail address.")
+            continue
+
+        # Phone
+        phone = input('Enter your phone number (10 digits): ').strip()
+        if not (phone.isdigit() and len(phone) == 10):
+            print("Invalid phone number! It must be exactly 10 digits.")
+            continue
+        phone = int(phone)
+
+        # Check-in and Check-out Dates
+        check_in = input('Enter the check-in date (YYYY-MM-DD): ').strip()
+        check_out = input('Enter the check-out date (YYYY-MM-DD): ').strip()
+
+        # Confirmation of data
+        print("\nPlease confirm your details:")
+        print("Name: {}".format(name))
+        print("Email: {}".format(email))
+        print("Phone: {}".format(phone))
+        print("Check-in Date: {}".format(check_in))
+        print("Check-out Date: {}".format(check_out))
+
+        confirmation = input("Is this information correct? (yes/no): ").strip().lower()
+        if confirmation == 'yes':
+            break
+        else:
+            print("Let's re-enter your details.\n")
+
+    return name, email, phone, check_in, check_out
 
 
-'''
+''' 
     def bookRoom(room_no,name,email,phone,address,room_type,price,check_in,check_out,bill):
     con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='',auth_plugin="mysql_native_password")
     cursor=con.cursor()
