@@ -1,16 +1,36 @@
-import correction
+import misc
 def FAQ():
 
-    print("Refund Policy:  PRESS 1")
-    print("If you are not satisfied with your experience at Swaraj Hotel, you can return your booking and get a full refund of the amount paid. PRESS 2")
-    print("Cancellation Policy: PRESS 3")
-    print("You can cancel your booking at any time by contacting us through our contact details provided on our website or by calling us at +91-9876543210. PRESS 4")
-    print("Terms and Conditions: PRESS 5")
-    print("By using our website or mobile application, you agree to our Terms and Conditions. These Terms and Conditions outline the rules and regulations that govern your use of our website or mobile application. PRESS 5")
-    print("Privacy Policy: PRESS 7")
-    print("We value your privacy and are committed to protecting your personal information. Our Privacy Policy outlines the types of personal information we collect, how we use it, and how we protect it. PRESS 7")
-    print("Help Center: PRESS ")
-    print("If you have any questions or need assistance, you can visit our Help Center for guidance. PRESS 9")
+    print("""PRESS 1: Refund Policy
+    If you are not satisfied with your experience at Swaraj Hotel, you can return your booking and get a full refund of the amount paid.\n""")
+    
+    print("""PRESS 2: Satisfaction Guarantee
+    We aim to ensure complete customer satisfaction during your stay at Swaraj Hotel.\n""")
+    
+    print("""PRESS 3: Cancellation Policy
+    You can cancel your booking at any time by contacting us through our contact details provided on our website 
+    or by calling us at +91-9876543210.\n""")
+    
+    print("""PRESS 4: Amend Booking
+    If you need to modify your booking, please reach out to us at least 24 hours before your check-in date.\n""")
+    
+    print("""PRESS 5: Terms and Conditions
+    By using our website or mobile application, you agree to our Terms and Conditions. 
+    These outline the rules and regulations that govern your use of our website or mobile application.\n""")
+    
+    print("""PRESS 6: Hotel Amenities
+    Explore the list of amenities we offer, including free Wi-Fi, swimming pool, spa, and gym facilities.\n""")
+    
+    print("""PRESS 7: Privacy Policy
+    We value your privacy and are committed to protecting your personal information. 
+    Our Privacy Policy outlines the types of personal information we collect, how we use it, and how we protect it.\n""")
+    
+    print("""PRESS 8: Contact Us
+    For further inquiries, please reach out to us via email at support@swarajhotel.com or call us at +91-9876543210.\n""")
+    
+    print("""PRESS 9: Help Center
+    If you have any questions or need assistance, you can visit our Help Center for guidance.\n""")
+
 
     a=int(input("Please enter your choice:"))
 
@@ -104,4 +124,4 @@ def FAQ():
           '''
       print(a)
     else:
-        correction.correct(FAQ)
+        misc.correct(FAQ)
