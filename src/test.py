@@ -2,16 +2,6 @@ def FAQ():
     print("please enter your choice:")
     choice=int(input())
 
-    a=input("Refund Policy:  PRESS 1")
-    a=input("If you are not satisfied with your experience at Swaraj Hotel, you can return your booking and get a full refund of the amount paid. PRESS 2")
-    a=input("Cancellation Policy: PRESS 2")
-    a=input("You can cancel your booking at any time by contacting us through our contact details provided on our website or by calling us at +91-9876543210. PRESS 3")
-    a=input("Terms and Conditions: PRESS 4")
-    a=input("By using our website or mobile application, you agree to our Terms and Conditions. These Terms and Conditions outline the rules and regulations that govern your use of our website or mobile application. PRESS 5")
-    a=input("Privacy Policy: PRESS 6")
-    a=input("We value your privacy and are committed to protecting your personal information. Our Privacy Policy outlines the types of personal information we collect, how we use it, and how we protect it. PRESS 7")
-    a=input("Help Center: PRESS 8")
-    a=input("If you have any questions or need assistance, you can visit our Help Center for guidance. PRESS 9")
 
     if a==1:
         '''
