@@ -1,3 +1,4 @@
+#jai mata di
 def bill(cid,name, email, phone, check_in, check_out, priceOfOneDay):
       import mysql.connector as sqlcon
       con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
