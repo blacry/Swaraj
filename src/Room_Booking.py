@@ -18,6 +18,14 @@ def room_booking():
         room_perks.perks()
         room_booking()
     customer_name, customer_email, customer_phone, customer_check_in, customer_check_out = customerDetails()
+    cid = c_id()
+    
+    import mysql.connector as sqlcon
+    con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
+    cursor=con.cursor()
+    query="insert into customerinfo values({},'{}','{}',{},'{}','{}')".format( cid, customer_name, customer_email, customer_phone, customer_check_in, customer_check_out)
+    cursor.execute(query)
+    con.commit()
     
     Bill.bill(customer_name,customer_email,customer_phone,customer_check_in,customer_check_out,price)
 
@@ -116,6 +124,26 @@ def customerDetails():
             print("Let's re-enter your details.\n")
 
     return name, email, phone, check_in, check_out
+
+def c_id():
+    import random
+    import mysql.connector as sqlcon
+    
+    cid=random.randint(10000000,99999999)
+
+    con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
+    cursor=con.cursor()
+
+    check = "select c_id from customerinfo where c_id ={}".format(cid)
+    cursor.execute(check)
+    check = cursor.fetchall()
+
+    if check:
+         cid = c_id()
+
+    return cid
+        
+
 
 
 ''' 
