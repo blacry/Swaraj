@@ -27,7 +27,7 @@ def room_booking():
     cursor.execute(query)
     con.commit()
     
-    Bill.bill(customer_name,customer_email,customer_phone,customer_check_in,customer_check_out,price)
+    Bill.bill(cid,customer_name,customer_email,customer_phone,customer_check_in,customer_check_out,price)
 
 def priceDetails(choice):
     if choice==1:

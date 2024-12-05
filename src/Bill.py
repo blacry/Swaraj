@@ -1,7 +1,18 @@
-#Jai mata di
-def bill( name= "jeb" , email="xyz@gmail.com" , phone=9876543210 , check_in=3 , check_out=7 , priceOfOneDay = 4):
-      price = priceOfOneDay * (check_out - check_in)
-    #   wil be calc via sql
+#jai mata di
+
+def bill(cid,name, email, phone, check_in, check_out, priceOfOneDay):
+      
+      import mysql.connector as sqlcon
+      
+      con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
+      cursor=con.cursor()
+
+      q="select datediff('{}', '{}')days from customerinfo where c_id = {}".format(check_out,check_in,cid)
+      cursor.execute(q)
+      days= cursor.fetchall()
+      con.commit()
+      
+      price = priceOfOneDay  * (days[0][0])
       print(
      '''
      ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
