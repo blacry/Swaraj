@@ -1,19 +1,14 @@
 def roomfinder(roomtype):
-  if roomtype==1:
-    b,c=1,21
-  elif roomtype==2:
-    b,c=21,41
-  elif roomtype==3:
-    b,c=41,61
-  elif roomtype==4:
-    b,c=61,81
-  elif roomtype==5:
-    b,c=81,101 
-  for i in range(b,c):
+  roomlist = {
+    1:[1,21] , 2:[21,41] , 3:[41,61] , 4:[61,81] , 5:[81,101]
+  }
+
+  for i in range(roomlist[roomtype][0] , roomlist[roomtype][1]):
     import mysql.connector as sqlcon
     con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
     cursor=con.cursor()
-    query="select roomno from roominfo where roomno={} and status='{}'".format(i,'available')
+
+    query="select roomno from roominfo where status='available' and roomno={}".format(i)
     cursor.execute(query)
     result=cursor.fetchall()
     if result:
@@ -21,15 +16,14 @@ def roomfinder(roomtype):
       return i
     
 def roomassigner (room_no,c_id,checkout):
+
     import mysql.connector as sqlcon
     con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
     cursor=con.cursor()
-    query="update roominfo set c_id={} where roomno={} ".format(c_id,room_no)
+    query="update roominfo set c_id={} where roomno={}".format(c_id, checkout ,room_no)
     cursor.execute(query)
-    con.commit()
     query="update roominfo set status='booked' where roomno={} and c_id={}".format(room_no,c_id)
     cursor.execute(query)
-    con.commit()
     query="update roominfo set checkout='{}' where roomno={} and c_id={}".format(checkout,room_no,c_id)
     cursor.execute(query)
     con.commit()
