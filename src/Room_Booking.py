@@ -4,6 +4,8 @@ import misc
 import room_perks
 import Bill
 import rooms
+
+
 def room_booking():
     try:
         n = int(input('How many rooms do you want to book? : '))
@@ -34,10 +36,10 @@ def room_booking():
         query="insert into customerinfo values({},'{}','{}',{},'{}','{}')".format( cid , customer_name, customer_email, customer_phone, customer_check_in, customer_check_out)
         cursor.execute(query)
         con.commit()
-        
+
         rooms.roomassigner(roomno,cid,customer_check_out)
         Bill.bill(cid,customer_name,customer_email,customer_phone,customer_check_in,customer_check_out,price,roomno)
-        
+
     print('Thank you for booking with SWARAJ! Your booking has been successfully completed')
 
 def priceDetails(choice):
@@ -116,9 +118,10 @@ def customerDetails():
 
         # Phone
         phone = input('Enter your phone number (10 digits): ').strip()
-        if not (phone.isdigit() and len(phone) == 10):
-            print("Invalid phone number! It must be exactly 10 digits.")
+        if not (phone.isdigit() and len(phone) == 10 and int(phone) != 0):
+            print("Invalid phone number! Please enter a correct number.")
             continue
+        
         phone = int(phone)
 
         # Check-in and Check-out Dates
@@ -164,8 +167,33 @@ def c_id():
     if check:
          cid = c_id()
     return cid
-        
 
+def cancelBooking():
+    print('Enter your customer id:')
+    try:
+        cid = int(input())
+    except ValueError:
+        misc.correct(cancelBooking)
+    
+    import mysql.connector as sqlcon
+    con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
+    cursor=con.cursor()
+    query="DELETE FROM customerinfo WHERE c_id = {}".format(cid)
+    cursor.execute(query)
+    print('cursor , fetched => ', cursor , cursor.fetchall())
+    print('Booking Cancelled')
+    con.commit()
+    cursor.close()
+    con.close()
+
+def viewCustomers():
+    
+    import mysql.connector as sqlcon
+    con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
+    cursor=con.cursor()
+    cursor.execute('select * from customerinfo')
+    for i in cursor.fetchall(): 
+        print(i)
 '''
 elif choice==2:
     print('Enter the room number:')
