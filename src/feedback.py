@@ -4,8 +4,9 @@ def provide_feedback():
     email = emailfxn()
     rating = ratingfxn()
     feedback = feedbackfxn()
-
-    insertFeedback(email, rating , feedback)
+    roomno = roomnofxn(email)
+    
+    insertFeedback(email, rating , feedback , roomno)
 
 def emailfxn():
     while True:
@@ -22,8 +23,7 @@ def emailfxn():
             print("you have enetered wrong email \nplease enter the correct email id")
             continue
         else:
-            return email
-            
+            return email   
 
 def ratingfxn():
     ratings = input("Give us a rating from 1-5:")
@@ -37,6 +37,7 @@ def ratingfxn():
         print("""
               Please enter a valid rating\n""")
         ratingfxn()
+
 def feedbackfxn():
     feedbacks=input("Enter your feedback:")
 
@@ -45,6 +46,22 @@ def feedbackfxn():
     else:
         print("Thank you for providing feedback!")
         return feedbacks
+    
+def roomnofxn(email):
+    print('Please enter the room number:')
+    roomno=int(input())
+
+    import mysql.connector as sqlcon
+    con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
+    cursor=con.cursor()
+
+    cursor.execute('select * from customerinfo natural join roominfo where roomno = {} and email = "{}"'.format(roomno, email))
+    room = cursor.fetchall()
+    if room:
+        return roomno
+    else:
+        print('Please enter your correct room number')
+        roomnofxn(email)
 
 def insertFeedback(email , rating, feedback , roomno) :
 
@@ -52,10 +69,10 @@ def insertFeedback(email , rating, feedback , roomno) :
     con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
     cursor=con.cursor()
 
-    query = 'select c_id from customerinfo natural join roomsinfo where email = "{}" and roomno = {}'.format( email, roomno)
+    query = 'select c_id from customerinfo natural join roominfo where email = "{}" and roomno = {}'.format( email, roomno)
     cursor.execute(query)
     c_id=cursor.fetchall()
-    c_id=c_id[0]
+    c_id=c_id[0][0]
     insert = 'insert into feedback values({} , {}, "{}")'.format(c_id, rating, feedback)
     cursor.execute(insert)
     con.commit()
