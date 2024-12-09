@@ -1,7 +1,7 @@
-#Jai mata di
+# jai mata di
 def bill(cid = 1010101010,name ='vivek', email='vivek@gmail.com', phone = 4545454545, check_in = '2024-12-05', check_out='2024-12-15', priceOfOneDay=1500 , room_no=15):
       
-      fh = open('{}bill.txt'.format(cid),'w')
+      fh = open('bill-{}.txt'.format(cid),'w')
 
       import mysql.connector as sqlcon
       con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
@@ -33,4 +33,5 @@ def bill(cid = 1010101010,name ='vivek', email='vivek@gmail.com', phone = 454545
       
       fh.write(a)
       fh.close()
+      
       print('created secusess')
