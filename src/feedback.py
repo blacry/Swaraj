@@ -1,4 +1,3 @@
-import mysql.connector as sqlcon
 def provide_feedback():
     print('please provide us your valuable feedback')
 
@@ -27,8 +26,10 @@ def emailfxn():
             
 
 def ratingfxn():
-    ratings = int(input("Give us a rating from 1-5:"))
-
+    ratings = input("Give us a rating from 1-5:")
+    if ratings.isdigit():
+        ratings = int(ratings)
+    
     if ratings in range(1,6):
         print("Thank you for rating Swaraj Hotel!")
         return ratings
@@ -45,13 +46,13 @@ def feedbackfxn():
         print("Thank you for providing feedback!")
         return feedbacks
 
-def insertFeedback(email , rating, feedback , roomno ) :
+def insertFeedback(email , rating, feedback , roomno) :
 
     import mysql.connector as sqlcon
     con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
     cursor=con.cursor()
 
-    query = 'select c_id from customerinfo natural join roomsinfo where email = {} and roomno = {}'.format( email, roomno)
+    query = 'select c_id from customerinfo natural join roomsinfo where email = "{}" and roomno = {}'.format( email, roomno)
     cursor.execute(query)
     c_id=cursor.fetchall()
     c_id=c_id[0]
