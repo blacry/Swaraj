@@ -3,7 +3,7 @@ def bill(cid = 69696969, name = 'vivek', email = 'vivek@gmail.com', phone = '454
       fh = open('bill-{}.txt'.format(cid),'w',encoding='UTF-8')
 
       import mysql.connector as sqlcon
-      con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
+      con = sqlcon.connect( host="sql12.freesqldatabase.com",user="sql12753911",passwd="vXHHHP8jFP",database='sql12753911',auth_plugin="mysql_native_password" )
       cursor=con.cursor()
 
       q="select datediff('{}', '{}')days from customerinfo where c_id = {}".format(check_out,check_in,cid)
@@ -43,7 +43,7 @@ def billGenerator():
                   continue
 
             import mysql.connector as sqlcon
-            con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
+            con = sqlcon.connect( host="sql12.freesqldatabase.com",user="sql12753911",passwd="vXHHHP8jFP",database='sql12753911',auth_plugin="mysql_native_password" )
             cursor=con.cursor()
 
             cursor.execute("select * from customerinfo where c_id = {}".format(cid))

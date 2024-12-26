@@ -5,7 +5,7 @@ def roomfinder(roomtype):
 
   for i in range(roomlist[roomtype][0] , roomlist[roomtype][1]):
     import mysql.connector as sqlcon
-    con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
+    con = sqlcon.connect( host="sql12.freesqldatabase.com",user="sql12753911",passwd="vXHHHP8jFP",database='sql12753911',auth_plugin="mysql_native_password" )
     cursor=con.cursor()
 
     query="select roomno from roominfo where status='available' and roomno={}".format(i)
@@ -18,7 +18,7 @@ def roomfinder(roomtype):
 def roomassigner (room_no,c_id,checkout):
 
     import mysql.connector as sqlcon
-    con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
+    con = sqlcon.connect( host="sql12.freesqldatabase.com",user="sql12753911",passwd="vXHHHP8jFP",database='sql12753911',auth_plugin="mysql_native_password" )
     cursor=con.cursor()
     query="update roominfo set c_id={} where roomno={}".format(c_id,room_no)
     cursor.execute(query)
@@ -31,7 +31,7 @@ def roomassigner (room_no,c_id,checkout):
 def viewRooms():
    
     import mysql.connector as sqlcon
-    con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
+    con = sqlcon.connect( host="sql12.freesqldatabase.com",user="sql12753911",passwd="vXHHHP8jFP",database='sql12753911',auth_plugin="mysql_native_password" )
     cursor=con.cursor()
     cursor.execute('select * from roominfo')
     for i in cursor.fetchall(): 

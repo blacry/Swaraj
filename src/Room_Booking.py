@@ -30,7 +30,7 @@ def room_booking():
         cid = c_id()
             
         import mysql.connector as sqlcon
-        con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
+        con = sqlcon.connect( host="sql12.freesqldatabase.com",user="sql12753911",passwd="vXHHHP8jFP",database='sql12753911',auth_plugin="mysql_native_password" )
         cursor=con.cursor()
 
         query="insert into customerinfo values({},'{}','{}',{},'{}','{}')".format( cid , customer_name, customer_email, customer_phone, customer_check_in, customer_check_out)
@@ -157,7 +157,7 @@ def c_id():
     
     cid=random.randint(10000000,99999999)
 
-    con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
+    con = sqlcon.connect( host="sql12.freesqldatabase.com",user="sql12753911",passwd="vXHHHP8jFP",database='sql12753911',auth_plugin="mysql_native_password" )
     cursor=con.cursor()
 
     check = "select c_id from customerinfo where c_id ={}".format(cid)
@@ -176,7 +176,7 @@ def cancelBooking():
         misc.correct(cancelBooking)
     
     import mysql.connector as sqlcon
-    con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
+    con = sqlcon.connect( host="sql12.freesqldatabase.com",user="sql12753911",passwd="vXHHHP8jFP",database='sql12753911',auth_plugin="mysql_native_password" )
     cursor=con.cursor()
     query="DELETE FROM customerinfo WHERE c_id = {}".format(cid)
     cursor.execute(query)
@@ -189,79 +189,8 @@ def cancelBooking():
 def viewCustomers():
     
     import mysql.connector as sqlcon
-    con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='swaraj_hotel',auth_plugin="mysql_native_password")
+    con = sqlcon.connect( host="sql12.freesqldatabase.com",user="sql12753911",passwd="vXHHHP8jFP",database='sql12753911',auth_plugin="mysql_native_password" )
     cursor=con.cursor()
     cursor.execute('select * from customerinfo')
     for i in cursor.fetchall(): 
         print(i)
-'''
-elif choice==2:
-    print('Enter the room number:')
-    room_no=int(input())
-    con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='',auth_plugin="mysql_native_password")
-    cursor=con.cursor()
-    cursor.execute("SELECT * FROM room_booking WHERE room_no=%s",(room_no))
-    result=cursor.fetchall()
-    for row in result:
-        print('Room Number:',row[0])
-        print('Name:',row[1])
-        print('Age:',row[2])
-        print('Gender:',row[3])
-        print('Email:',row[4])
-        print('Phone:',row[5])
-        print('Address:',row[6])
-        print('Room Type:',row[7])
-        print('Price:',row[8])
-        print('Check In:',row[9])
-        print('Check Out:',row[10])
-        print('Bill:',row[11])
-        print('Feedback:',row[12])
-    cursor.close()
-    con.close()
-elif choice==3:
-    print('Email: swaraj@gmail.com')
-    print('Phone: +91-9876543210')
-elif choice==4:
-    print('Enter the room number:')
-    room_no=int(input())
-    print('Enter the feedback:')
-    feedback=input()
-    if feedback=='':
-        print('Enter the feedback:')
-        feedback=input()
-    else:
-        print('Thank you for providing feedback')
-    con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='',auth_plugin="mysql_native_password")
-    cursor=con.cursor()
-    cursor.execute("UPDATE room_booking SET feedback=%s WHERE room_no=%s",(feedback,room_no))
-    con.commit()
-    cursor.close()
-    con.close()
-elif choice==5:
-    print('Enter the room number:')
-    room_no=int(input())
-    con=sqlcon.connect(host="localhost",user="root",passwd="12345",database='',auth_plugin="mysql_native_password")
-    cursor=con.cursor()
-    cursor.execute("SELECT * FROM room_booking WHERE room_no=%s",(room_no))
-    result=cursor.fetchall()
-    for row in result:
-        print('Room Number:',row[0])
-        print('Name:',row[1])
-        print('Age:',row[2])
-        print('Gender:',row[3])
-        print('Email:',row[4])
-        print('Phone:',row[5])
-        print('Address:',row[6])
-        print('Room Type:',row[7])
-        print('Price:',row[8])
-        print('Check In:',row[9])
-        print('Check Out:',row[10])
-        print('Bill:',row[11])
-        print('Feedback:',row[12])
-    cursor.close()
-    con.close()
-elif choice==6:
-    print('Thank you for using Swaraj Hotel')
-    exit()
-else:       
-'''
